@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import MainDisplay from './workdisplay/main.jsx'
+import { connect } from 'react-redux';
+
+import { bindActionCreators } from 'redux'
 
 
-export default class WorkDisplay extends Component{
+
+class WorkDisplay extends Component{
 
 constructor(props) {
 		    super(props);
@@ -12,10 +16,10 @@ constructor(props) {
 		  }
 
 render(){
-	
+	var {task} = this.props.user
 	return(
 		<div>
-		<MainDisplay/>
+		<MainDisplay task={task}/>
 	</div>
 
 		
@@ -27,3 +31,16 @@ render(){
 
 
 }
+
+function mapStateToProps (state) {
+  return {
+    user: state.user
+  }
+}
+
+
+
+
+
+
+export default connect(mapStateToProps)(WorkDisplay)

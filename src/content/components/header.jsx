@@ -35,7 +35,7 @@ render(){
 	}
 	const iconStyleLeft={
 		    verticalAlign: "top",
-		    marginTop: 13	}
+		    marginTop: 9	}
 	var element = <MenuElements/>
 	
 	return( 
@@ -47,6 +47,7 @@ render(){
 		    iconElementRight={element}
 		    iconStyleLeft={iconStyleLeft}
 		    iconStyleRight={iconStyleRight}
+		    zDepth={2}
 		  />
 	  </div>
 

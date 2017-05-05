@@ -10,6 +10,21 @@ html{
     position:relative;
     background: #eeeeee /* force the BODY element to match the height of the HTML element */
 }
+hr{
+  opacity: 0.1;
+  margin: 0px 0px;
+  border: 0.5px solid rgb(115, 135, 156);
+}
+.redactorText{
+	margin: 10px;
+	font-family: Roboto;
+	font-size: 16px;
+	resize: none;
+	outline: none;
+	border: 2px dashed rgba(0,0,0,0.2);
+	border-radius: 8px;
+	padding: 5px
+}
 
 @media (max-width: 1600px) {
 
