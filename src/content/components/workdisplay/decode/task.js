@@ -23,7 +23,8 @@ constructor(props) {
 		  }
 	parsingTask=(content)=>{
 		var count=0;
-		var taskContent=<MainDecodeWorkDisplay data={content}/>
+		var taskContent=<MainDecodeWorkDisplay data={content} 
+						delete={this.props.delete} change={this.props.change}/>
 		var taskDescripton=new Array;
 		var answer='';
 		 var returnData=[taskContent, answer, taskDescripton]

@@ -20,7 +20,8 @@ constructor(props) {
 		  getContent=()=>{
 		  	return(this.props.task.map(function(item, index){
 			  	return(
-			  				<TaskWorkWindow key={index} item={item} index={index} theme={false} editSmth={this.editSmth}/>
+			  				<TaskWorkWindow key={index} item={item} delete={this.props.delete}
+			  				index={index} theme={false} editSmth={this.editSmth} change={this.props.change}/>
 			  			)
 			  	}.bind(this))
 		  	)
@@ -34,13 +35,13 @@ render(){
 	}
 	const paper = {
 		maxWidth: 800,
-		marginTop: 70
+		marginTop: 100,
+		minHeight: 100
 	}
 	var content = this.getContent()
 	return(<div  style={container}>
 			<Paper className='col-md-12 ' style={paper}>
 				{content}
-				<hr/>
 			</Paper>
 		</div>
 		

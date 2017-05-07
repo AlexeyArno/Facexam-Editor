@@ -17,9 +17,11 @@ constructor(props) {
 
 render(){
 	var {task} = this.props.user
+	console.log(task)
 	return(
 		<div>
-		<MainDisplay task={task}/>
+		<MainDisplay task={task} delete={this.props.delete}
+		change={this.props.change}/>
 	</div>
 
 		
@@ -37,8 +39,6 @@ function mapStateToProps (state) {
     user: state.user
   }
 }
-
-
 
 
 

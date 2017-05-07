@@ -19,13 +19,51 @@ hr{
 	margin: 10px;
 	font-family: Roboto;
 	font-size: 16px;
-	resize: none;
 	outline: none;
-	border: 2px dashed rgba(0,0,0,0.2);
+	border: 0px dashed rgba(0,0,0,0.2);
 	border-radius: 8px;
-	padding: 5px
+	resize: none;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+.paragraphSettings{
+	position: fixed;
 }
 
+.pMenu{
+	display: inline-block;
+	position: absolute;
+	right: -25px;
+	opacity: 0.3
+}
+.Code{
+	margin: 0;
+}
+.iconCreate{
+	width: 50px !important;
+	height: 50px !important;
+}
+
+.shellIconCreate{
+	display: inline-block;
+	margin: 20px;
+	opacity: 1;
+	max-width: 130px;
+	cursor: pointer;
+	transition: opacity 0.25s ease-in-out;
+	text-align: center
+}
+.shellIconCreate:hover{
+	opacity: 0.6
+}
+.shellIconCreate:active{
+	opacity: 0.3
+}
+.CodeShell{
+	display: inline-block;
+	width: 100%;
+}
 @media (max-width: 1600px) {
 
 

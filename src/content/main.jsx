@@ -3,7 +3,7 @@ import Header from './components/header.jsx'
 import ToolbarHeader from './components/toolbar.jsx'
 import WorkDisplay from './components/workdisplay.jsx'
 import { connect } from 'react-redux';
-import * as userActions from '../store/actions/userActions.js'
+import * as content from '../store/actions/content.js'
 import { bindActionCreators } from 'redux'
 
 
@@ -19,11 +19,28 @@ constructor(props) {
 		    };
 		  }
 
+		  deleteElement=(id)=>{
+		  	const {deleteElement} = this.props.content
+		  	deleteElement(id)
+
+		  }
+
+		  change=(id, type, data)=>{
+		  	const {changeElement} = this.props.content
+		  	changeElement(id, type, data)
+		  }
+
+		  create=(type)=>{
+		  	const {createElement} = this.props.content
+		  	createElement(type)
+		  }
+
 render(){
 	
 	return(<div>
-				<Header/>
-				<WorkDisplay store={this.props.store} />
+				<Header create={this.create}/>
+				<WorkDisplay store={this.props.store} 
+				delete={this.deleteElement} change={this.change}/>
 			</div>
 
 		
@@ -36,10 +53,20 @@ render(){
 
 }
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps (state) {
   return {
-    userActions: bindActionCreators(userActions, dispatch)
+    user: state.user
   }
 }
 
-export default connect( mapDispatchToProps)(Main)
+
+function mapDispatchToProps(dispatch) {
+  return {
+    content: bindActionCreators(content, dispatch)
+  }
+}
+
+
+
+
+export default connect(mapStateToProps,  mapDispatchToProps)(Main)

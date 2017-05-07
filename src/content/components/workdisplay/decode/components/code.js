@@ -11,45 +11,64 @@ import AppBar from 'material-ui/AppBar';
 import { docco } from 'react-syntax-highlighter/dist/styles';
 import ActionCode from 'material-ui/svg-icons/action/code'
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuItem from 'material-ui/MenuItem';
 
 
 export default class CodeWorkWindow extends Component{
 
-constructor(props) {
+
+	constructor(props) {
 		    super(props);
 		    this.state = {
-		    	data: this.props.data,
+		    	open: false
 		    };
+		}
+
+		deleteElemente=(id)=>{
+		  	this.props.delete(id)
 		  }
-	editSmth=(index)=>{
-		this.props.editSmth(index)
-	}
+
+		change=(id, type)=>{
+		  	var data = ''
+		  	if(type = 'size'){
+		  		data = "half"
+		  		if(this.props.data.size == 'half'){
+		  			data= 'full'
+		  		}
+		  	}
+		  	this.props.change(id, type, data)
+		}
+
 
 render(){
-	var index = this.props.index
-	var id = 'content'+index
-	var theme = lightBaseTheme
-	var opacity = 1
-	if(this.props.theme){
-		theme = darkBaseTheme
-		opacity = 0.7
-	}
-	
-	return(<div style={{paddingRight: "20px", opacity: opacity}} id={id}>
-	
-				<MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+	var name = 'col-md-12'
+		if(this.props.data.size == 'half'){
+			name = 'col-md-6'
+		}
+	var elements = <div className='pMenu'>
+							<IconMenu
+						      iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+						      anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
+						    >
+						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( this.props.data.id, 'size')}/>
+						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente( this.props.data.id)}/>
+						    </IconMenu>
+						</div>
+
+	return(<div style={{paddingRight: "20px"}} className={name}>
+				{elements}
 				<Paper className="CodeShell">
 				<AppBar title='Пример' 
-					iconElementRight={<ActionCode color="white"/>} 
 					showMenuIconButton={false} 
 					className="codeDescription"
-					titleStyle={{lineHeight: 1.6, maxHeight: '50px'}}
-					style={{backgroundColor:'rgb(164, 198, 57)', zIndex: 2}}
-					iconStyleRight={{marginBottom: '5px'}}
+					zDepth={2}
+					style={{background: '#4285f4'}}
 					/>
-				<SyntaxHighlighter language='python' useInlineStyles={true} style={docco} className="Code">{this.state.data}</SyntaxHighlighter>
+				<SyntaxHighlighter language='python' useInlineStyles={true} style={docco} className="Code">{this.props.data.content}</SyntaxHighlighter>
 				</Paper>
-				</MuiThemeProvider>
 			</div>
 
 		

@@ -19,54 +19,19 @@ export default class MainDecodeWorkDisplay extends Component{
 
 
 render(){
-	var taskContent = new Array;
-	var content
-	var theme = this.props.night
-	var data = this.props.data
-	data.map(function(item, index){
-		var type = item.type
-		switch(type){
-			case 'paragraph':
-				content = <ParagraphWorkWindow data={item.content} key={index} theme={theme} index={index} editSmth={this.editSmth} />
-				break;
-			case 'title':
-				content = <TitlehWorkWindow data={item.content} key={index} index={index} editSmth={this.editSmth}/>
-				break;
+	var final = this.props.data.map(function(item, index){
+		switch(item.type){
+			case "paragraph":
+				return(<ParagraphWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'img':
-				content = <ImageWorkWindow item={item} key={index} index={index} editSmth={this.editSmth}/>
-				break;
+				return(<ImageWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'code':
-				content = <CodeWorkWindow data={item.content} key={index} index={index} theme={theme} editSmth={this.editSmth}/>
-				break;
-			case 'tooltip':
-				content = <TooltipWorkWindow item={item} key={index} index={index} />
-				break;
-			case 'video':
-				content=<VideoWorkWindow item={item} key={index} index={index} displayType={'desktop'} />
-				break;
-			case 'formul':
-				content = <FormulWorkWindow data={item.content} key={index} index={index} theme={theme} editSmth={this.editSmth}/>
-				break;
-			case 'list':
-				content = <ListWorkWindow item={item} key={index} theme={theme} index={index} editSmth={this.editSmth}/>
-				break;
-			default:
-				content = <div key={index}/>
-				break;
+				return(<CodeWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
 		}
-		taskContent.push(content)
 	}.bind(this))
-	
-	return(
+	return(<div>{final}</div>)
 
-			<div>
-			{taskContent}
-			</div>	
 
-		   )
 
 }
-
-
-
 }

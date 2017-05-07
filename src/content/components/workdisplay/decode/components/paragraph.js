@@ -4,93 +4,103 @@ import IconButton from 'material-ui/IconButton';
 import ContentCreate from 'material-ui/svg-icons/content/create'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+
+
+// SETTINGS 
 
 
 export default class ParagraphWorkWindow extends Component{
 	constructor(props) {
 		    super(props);
 		    this.state = {
-		    	data: this.props.data,
-		    	redactor: false,
-		    	width: 0,
-		    	height: 0
+		    	value: '',
+		    	open: false
 		    };
+		    this.handleChange = this.handleChange.bind(this);
 		  }
 
 
-		  change=(id)=>{
-		  	if(id){
-			  	var width = document.getElementById(id).offsetWidth+20
-			  	var height =  document.getElementById(id).offsetHeight+20
-		  		this.setState({
-		  			redactor: !this.state.redactor,
-		  			width,
-		  			height
-		  		})
-		  	}else{
-		  			this.setState({
-		  			redactor: !this.state.redactor
-		  		})
-		  	}
-		  	
-		  }
-
-
-		  save=(id)=>{
-		  	var data =  document.getElementById(id).value
+		  handleToogled=()=>{
 		  	this.setState({
-		  			redactor: !this.state.redactor,
-		  			data: data
-		  		})
+		  		open: true
+		  	})
 		  }
 
 
-		editSmth=(index)=>{
-		this.props.editSmth(index)
-	}
+		  deleteElemente=(id)=>{
+		  	this.props.delete(id)
+		  }
 
-	parsingText=(content)=>{
-		var text = new Array;
-		content.map(function(item, index){
-			text.push(item.content)
-		})
-		return text
-	}	  
+		  change=(id, type)=>{
+		  	var data = ''
+		  	if(type = 'size'){
+		  		data = "half"
+		  		if(this.props.data.size == 'half'){
+		  			data= 'full'
+		  		}
+		  	}
+		  	this.props.change(id, type, data)
+		  }
 
-render(){
-				var content = this.state.data
-				var theme = lightBaseTheme
+
+		  componentDidMount=()=>{
+		  		var element = document.getElementById('content'+this.props.data.id)
+		  		element.style.height = "5px";
+    			element.style.height = (element.scrollHeight)+ 25 +"px";
+		  }
+
+
+
+
+		    handleChange(event, id) {
+		    	var element = document.getElementById('content'+this.props.data.id)
+			    this.props.change(this.props.data.id, 'content', event.target.value)
+			    element.style.height = "5px";
+    			element.style.height = (element.scrollHeight)+"px";
+			  }
+
+
+ 
+
+render(){	
+				var content = this.props.data.content
 				var opacity = 1
-				if( this.props.theme){
-					theme = darkBaseTheme
-					opacity = 0.7
-				}
-				var style={color: theme.palette.textColor, opacity: opacity, margin: 10, cursor: 'pointer'}
-				var id = 'content'+this.props.index
+				var id = 'content'+this.props.data.id
 				var buttons ={
 					margin: 5
 				}
-				if(this.state.redactor){
-					return(
-							<div style={{paddingRight: "20px"}}>
-							<textarea className="redactorText" cols="40" rows="3" id={id} defaultValue={content}
-							style={{width: this.state.width, height: this.state.height}}/><br/>
-							 <div style={{float: "right"}}>
-								<RaisedButton label="Сохранить" style={buttons} onClick={()=>this.save(id)} />	
-								<RaisedButton label="Отмена" style={buttons} onClick={()=>this.change()} />	
-							</div>						
-							</div>
-						)
-				}
+
+			var elements = <div className='pMenu'>
+							<IconMenu
+						      iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+						      anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
+						    >
+						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( this.props.data.id, 'size')}/>
+						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente( this.props.data.id)}/>
+						    </IconMenu>
+						</div>
+
+			var name = 'col-md-12'
+			if(this.props.data.size == 'half'){
+				name = 'col-md-6'
+			}
+
 			return(
-			<div style={{paddingRight: "20px"}}>
-		
-				<div className="word" id={id} style={style} onClick={()=>this.change(id)}>{content}</div>
-				
-			</div>
-		   )
+					<div style={{paddingRight: "20px"}} className={name}>
+							{elements}
+							<textarea className="redactorText" cols="40"  id={id} value={content}
+							onChange={this.handleChange} onClick={()=>this.handleToogled()}/><br/>	
+							
+
+					</div>
+						)
+		   
 
 		
 
