@@ -37,6 +37,7 @@ function deleteelement(data, id) {
 function changesmth( id, data , chnagedata) {
     var task = data
     var position = search(id, task)
+    console.log(task[position[0]].content[position[1]])
     if(position){
       switch(chnagedata[1]){
         case 'size':
@@ -44,6 +45,9 @@ function changesmth( id, data , chnagedata) {
           break;
         case 'content':
           task[position[0]].content[position[1]].content = chnagedata[2]
+        case 'url':
+            var globalID = '/9'
+           task[position[0]].content[position[1]].url = 'http://127.0.0.1:9999/'+'task_img'+globalID+'/'+chnagedata[2]
       }
     }
     return(task)
@@ -81,17 +85,7 @@ function create (type, data){
 const initialState = {
 	token: '',
 	task: [
-    {type: "mainquest", content: [
-      {
-        name: 'SomeText',
-        type: 'paragraph',
-        style: {color: 'black'},
-        id: 45,
-        size: 'half',
-        content: 'Repellendus possimus voluptas at reprehenderit optio consectetur doloremque officia nulla officiis, provident eos similique enim dolorum, ducimus, quaerat eveniet alias recusandae, molestiae.'+
-        ' officia nulla officiis, provident eos similique enim dolorum, ducimus, quaerat eveniet alias recusandae, molestiae.'+ 'Repellendus possimus voluptas at reprehenderit optio consectetur doloremque officia nulla officiis, provident eos similique enim dolorum, ducimus, quaerat eveniet alias recusandae, molestiae.'
-      }
-    ]}
+    {type: "mainquest", content: []}
   ]
 }
 

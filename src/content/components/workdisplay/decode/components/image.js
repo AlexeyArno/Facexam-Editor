@@ -29,18 +29,19 @@ export default class ImageWorkWindow extends Component{
 		    this.setState({open: !this.state.open});
 		  };
 
-		deleteElemente=(id)=>{
-		  	this.props.delete(id)
+		deleteElemente=()=>{
+		  	this.props.delete(this.props.data.id)
 		  }
 
-		change=(id, type)=>{
-		  	var data = ''
-		  	if(type = 'size'){
+		change=(type, data)=>{
+			var data = data
+		  	if(type == 'size'){
 		  		data = "half"
 		  		if(this.props.data.size == 'half'){
 		  			data= 'full'
 		  		}
 		  	}
+		  	var id =this.props.data.id
 		  	this.props.change(id, type, data)
 		}
 	
@@ -62,8 +63,8 @@ export default class ImageWorkWindow extends Component{
 						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
 						    >
 						      <MenuItem primaryText="Редактировать" onClick={()=>this.setState({open: true})}/>
-						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( this.props.data.id, 'size')}/>
-						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente( this.props.data.id)}/>
+						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( 'size')}/>
+						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>
 						</div>
 
@@ -77,7 +78,7 @@ export default class ImageWorkWindow extends Component{
 				        	 	<IconButton onClick={()=>this.handle()} style={closeStyle}>
 				        	 		<Close color='rgb(33, 150, 243)'/>
 				        	 	</IconButton>
-				        	 	<ImageSettings/>
+				        	 	<ImageSettings token={this.props.token} change={this.change} close={this.handle}/>
 				        	</Dialog>
 		return(<div className={name}>
 					{dialog}

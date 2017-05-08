@@ -20,7 +20,7 @@ constructor(props) {
 		  getContent=()=>{
 		  	return(this.props.task.map(function(item, index){
 			  	return(
-			  				<TaskWorkWindow key={index} item={item} delete={this.props.delete}
+			  				<TaskWorkWindow key={index} item={item} delete={this.props.delete} token={this.props.token}
 			  				index={index} theme={false} editSmth={this.editSmth} change={this.props.change}/>
 			  			)
 			  	}.bind(this))

@@ -21,7 +21,7 @@ render(){
 	return(
 		<div>
 		<MainDisplay task={task} delete={this.props.delete}
-		change={this.props.change}/>
+		change={this.props.change} token={this.props.token}/>
 	</div>
 
 		

@@ -24,7 +24,7 @@ render(){
 			case "paragraph":
 				return(<ParagraphWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'img':
-				return(<ImageWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<ImageWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change} token={this.props.token}/>)
 			case 'code':
 				return(<CodeWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
 		}

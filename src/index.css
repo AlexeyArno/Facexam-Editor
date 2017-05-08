@@ -35,7 +35,8 @@ hr{
 	display: inline-block;
 	position: absolute;
 	right: -25px;
-	opacity: 0.3
+	opacity: 0.3;
+	z-index: 99
 }
 .Code{
 	margin: 0;
@@ -64,6 +65,57 @@ hr{
 	display: inline-block;
 	width: 100%;
 }
+.upload{
+	width: 200px;
+}
+.coub{
+	width: 130px;
+	max-height: 130px;
+	display: inline-block;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.coub-inside{
+		opacity: 1;
+	transition: opacity 0.5s;
+}
+.coub-inside:hover{
+	opacity: 0.7
+}
+.DownCountSubject{
+	color: #fff;
+	padding-left: 10px; 
+	width: 100px
+}
+.paper{
+	margin: 10px auto;
+	max-width: 100%;
+}
+.subjectLine{
+	padding: 10px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	max-height: 200px;
+	white-space: nowrap;
+	padding-top: 10px;
+}
+.DropZone{
+	text-align: center;
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.5s
+}
+.DropZone:hover{
+	opacity: 0.7
+}
+.menuInImage{
+	display: inline-block;
+    position: relative;
+    right: 30px;
+    bottom: 78px;
+    opacity: 0.7;
+}
+
 @media (max-width: 1600px) {
 
 

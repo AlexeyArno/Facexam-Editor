@@ -36,10 +36,10 @@ constructor(props) {
 		  }
 
 render(){
-	
+	const {token} = this.props.user
 	return(<div>
 				<Header create={this.create}/>
-				<WorkDisplay store={this.props.store} 
+				<WorkDisplay store={this.props.store} token={token} 
 				delete={this.deleteElement} change={this.change}/>
 			</div>
 
