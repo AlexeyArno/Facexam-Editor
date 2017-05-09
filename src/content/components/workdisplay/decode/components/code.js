@@ -30,7 +30,8 @@ export default class CodeWorkWindow extends Component{
 		    };
 		}
 
-		deleteElemente=(id)=>{
+		deleteElemente=()=>{
+			var id = this.props.data.id
 		  	this.props.delete(id)
 		  }
 

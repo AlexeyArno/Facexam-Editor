@@ -27,6 +27,8 @@ render(){
 				return(<ImageWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change} token={this.props.token}/>)
 			case 'code':
 				return(<CodeWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
+			case 'list':
+				return(<ListWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
 		}
 	}.bind(this))
 	return(<div>{final}</div>)

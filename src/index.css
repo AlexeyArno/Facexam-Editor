@@ -27,6 +27,20 @@ hr{
     height: 100%;
     width: 100%;
 }
+.redactorTextLi{
+	margin: 1px;
+	font-family: Roboto;
+	font-size: 16px;
+	outline: none;
+	border: 0px dashed rgba(0,0,0,0.2);
+	border-radius: 8px;
+	resize: none;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: -15px;
+}
 .paragraphSettings{
 	position: fixed;
 }

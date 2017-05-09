@@ -45,9 +45,11 @@ render(){
 					<CodeMirror value={this.state.value} onChange={this.updateCode} options={options} />
 					<div style={{textAlign: "right"}}>	
 						<RaisedButton label="Отмена" style={style} onClick={()=>this.props.close()}/> 
-						<RaisedButton label="Сохранить" primary={true} style={style} onClick={()=>this.change()}/>
+						<RaisedButton label="Сохранить" style={style} backgroundColor='rgb(66, 133, 244)'
+						 onClick={()=>this.change()} labelColor='#fff'/>
 					</div>
 				</div>
+	
 	}
 	}
 

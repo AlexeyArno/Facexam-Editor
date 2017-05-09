@@ -1,6 +1,7 @@
 import Paragraph from './default-elements/paragraph.js'
 import Img from './default-elements/img.js'
 import Code from './default-elements/code.js'
+import List from './default-elements/list.js'
 
 
 function search(id, task){
@@ -13,6 +14,29 @@ function search(id, task){
         }
     }
   return false
+}
+
+
+function search_li(id, li){
+  for(var i=0;i<li.content.length;i++){
+        if(li.content[i].id ==  id){
+          return i
+          break;
+        }
+    }
+  return false
+}
+
+
+function getMax_ID(task){
+  var maxid = 0 
+  for(var i =0 ; i<task.length; i++){
+    if(task[i].id > maxid){
+      maxid = task[i].id
+    }
+  }
+  maxid++
+  return(maxid)
 }
 
 
@@ -44,9 +68,25 @@ function changesmth( id, data , chnagedata) {
           break;
         case 'content':
           task[position[0]].content[position[1]].content = chnagedata[2]
+              break;
+          
         case 'url':
             var globalID = '/9'
            task[position[0]].content[position[1]].url = 'http://127.0.0.1:9999/'+'task_img'+globalID+'/'+chnagedata[2]
+           break;
+        case 'content_list':
+            var li_position = search_li(chnagedata[2][0],  task[position[0]].content[position[1]])
+             task[position[0]].content[position[1]].content[li_position].content = chnagedata[2][1]
+              break;
+        case 'new_list_item':
+            var newID = Number(String(id)+getMax_ID(task[position[0]].content[position[1]].content))
+            var item = {type: 'text',
+                          content: 'Hello',
+                          id:newID} 
+            task[position[0]].content[position[1]].content.push(item)
+            console.log(task[position[0]].content[position[1]].content)
+              break;
+             
       }
     }
     return(task)
@@ -55,13 +95,7 @@ function changesmth( id, data , chnagedata) {
 function create (type, data){
   var task = data
   var fposit = 0
-  var maxid = 0 
-  for(var i =0 ; i<task[0].content.length; i++){
-    if(task[0].content[i].id > maxid){
-      maxid = task[0].content[i].id
-    }
-  }
-  maxid++
+  var maxid = getMax_ID(task[0].content)
   switch(type){
     case 'paragraph':
       var newData = Paragraph(maxid)
@@ -71,6 +105,9 @@ function create (type, data){
       break;
     case 'code':
         var newData = Code(maxid)
+        break;
+    case 'list':
+        var newData = List(maxid)
         break;
     default:
      return task

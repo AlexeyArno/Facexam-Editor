@@ -3,6 +3,7 @@ import ActionExtension from 'material-ui/svg-icons/action/extension'
 import ActionPermMedia from 'material-ui/svg-icons/action/perm-media'
 import ActionDescription from 'material-ui/svg-icons/action/description'
 import ActionCode from 'material-ui/svg-icons/action/code'
+import ActionList from 'material-ui/svg-icons/action/list'
 
 export default class Create extends Component{
 
@@ -34,6 +35,10 @@ render(){
 				<div className="shellIconCreate" onClick={()=>this.create('code')}>
 					<ActionCode className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Код</div>
+				</div>
+				<div className="shellIconCreate" onClick={()=>this.create('list')}>
+					<ActionList className='iconCreate' color='rgba(0,0,0,0.4)'/>
+					<div style={{color: 'rgba(0,0,0,0.7)'}}>Список</div>
 				</div>
 			</div>
 
