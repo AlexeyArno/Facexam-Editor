@@ -14,6 +14,10 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
+import Dialog from 'material-ui/Dialog';
+import Close from 'material-ui/svg-icons/navigation/close';
+
+import CodeRedactor from './redactor-instruments/coderedactor.js'
 
 
 export default class CodeWorkWindow extends Component{
@@ -30,9 +34,10 @@ export default class CodeWorkWindow extends Component{
 		  	this.props.delete(id)
 		  }
 
-		change=(id, type)=>{
-		  	var data = ''
-		  	if(type = 'size'){
+		change=(type, data)=>{
+			var id = this.props.data.id
+			var data = data
+		  	if(type =='size'){
 		  		data = "half"
 		  		if(this.props.data.size == 'half'){
 		  			data= 'full'
@@ -42,26 +47,51 @@ export default class CodeWorkWindow extends Component{
 		}
 
 
+		handle=()=>{
+			this.setState({
+				open: !this.state.open
+			})
+		}
+
 render(){
 	var name = 'col-md-12'
 		if(this.props.data.size == 'half'){
 			name = 'col-md-6'
+		}
+		const closeStyle={
+			position: 'absolute',
+			top: '15px',
+			right: '20px'
 		}
 	var elements = <div className='pMenu'>
 							<IconMenu
 						      iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
 						      anchorOrigin={{horizontal: 'left', vertical: 'top'}}
 						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
-						    >
-						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( this.props.data.id, 'size')}/>
-						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente( this.props.data.id)}/>
+						    >	
+						    	<MenuItem primaryText="Редактировать" onClick={()=>this.setState({open: true})}/>
+						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change('size')}/>
+						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>
 						</div>
+	var dialog =  <Dialog
+				          title="Изменение"
+				          titleStyle={{color: 'rgb(33, 150, 243)'}}
+				          modal={true}
+				          open={this.state.open}
+				          onRequestClose={this.handle}
+				        	>
+	        	 	<IconButton onClick={()=>this.handle()} style={closeStyle}>
+	        	 		<Close color='rgb(33, 150, 243)'/>
+	        	 	</IconButton>
+	        	 	<CodeRedactor value={this.props.data} close={this.handle} change={this.change} />
+	        	</Dialog>
 
 	return(<div style={{paddingRight: "20px"}} className={name}>
 				{elements}
+				{dialog}
 				<Paper className="CodeShell">
-				<AppBar title='Пример' 
+				<AppBar title={this.props.data.language} 
 					showMenuIconButton={false} 
 					className="codeDescription"
 					zDepth={2}

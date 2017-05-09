@@ -37,7 +37,6 @@ function deleteelement(data, id) {
 function changesmth( id, data , chnagedata) {
     var task = data
     var position = search(id, task)
-    console.log(task[position[0]].content[position[1]])
     if(position){
       switch(chnagedata[1]){
         case 'size':

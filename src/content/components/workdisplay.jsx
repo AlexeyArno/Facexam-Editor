@@ -17,7 +17,6 @@ constructor(props) {
 
 render(){
 	var {task} = this.props.user
-	console.log(task)
 	return(
 		<div>
 		<MainDisplay task={task} delete={this.props.delete}
