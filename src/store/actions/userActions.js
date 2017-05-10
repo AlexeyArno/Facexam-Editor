@@ -6,6 +6,7 @@ export function setToken(token) {
   }
 
 }
+
 export function setTask(task) {
 
   return {

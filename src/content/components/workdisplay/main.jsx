@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import TaskWorkWindow from './decode/task.js'
+import MainDecodeWorkDisplay from './decode/mainDecode.js'
 
 
 export default class MainDisplay extends Component{
@@ -18,9 +19,9 @@ constructor(props) {
 
 
 		  getContent=()=>{
-		  	return(this.props.task.map(function(item, index){
+		  	return(this.props.task.content.map(function(item, index){
 			  	return(
-			  				<TaskWorkWindow key={index} item={item} delete={this.props.delete} token={this.props.token}
+			  				<MainDecodeWorkDisplay key={index} item={item} delete={this.props.delete} token={this.props.token}
 			  				index={index} theme={false} editSmth={this.editSmth} change={this.props.change}/>
 			  			)
 			  	}.bind(this))
@@ -35,8 +36,8 @@ render(){
 	}
 	const paper = {
 		maxWidth: 800,
-		marginTop: 100,
-		minHeight: 100
+		margin:'100px 0px',
+		minHeight: 100,
 	}
 	var content = this.getContent()
 	return(<div  style={container}>

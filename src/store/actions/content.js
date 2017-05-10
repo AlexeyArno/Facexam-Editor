@@ -1,8 +1,8 @@
-export function changeElement(id, type, data) {
+export function changeElement(id, type, data, area) {
 
   return {
     type: 'CHANGE',
-    payload: [id, type, data]
+    payload: [id, type, data, area]
   }
 
 }
@@ -14,12 +14,20 @@ export function deleteElement(id) {
   }
 
 }
+export function setCount(count) {
 
-export function createElement(type) {
+  return {
+    type: 'SET_COUNT',
+    payload: count
+  }
+
+}
+
+export function createElement(type, area) {
 
   return {
     type: 'CREATE',
-    payload: type
+    payload: [type, area]
   }
 
 }

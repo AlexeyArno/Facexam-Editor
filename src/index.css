@@ -129,7 +129,12 @@ hr{
     bottom: 78px;
     opacity: 0.7;
 }
-
+.bottomNavigation{
+	position: fixed !important;
+	bottom: 0px !important;
+	text-align: center;
+	box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.3)
+}
 @media (max-width: 1600px) {
 
 

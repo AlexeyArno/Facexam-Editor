@@ -15,8 +15,14 @@ injectTapEventPlugin();
 constructor(props) {
 		    super(props);
 		    this.state = {
-		    	
+		    	nowPosition: 0
 		    };
+		  }
+
+		  changePosit=(posit)=>{
+		  	this.setState({
+		  		nowPosition: posit
+		  	})
 		  }
 
 		  deleteElement=(id)=>{
@@ -27,20 +33,22 @@ constructor(props) {
 
 		  change=(id, type, data)=>{
 		  	const {changeElement} = this.props.content
-		  	changeElement(id, type, data)
+		  	var area = this.state.nowPosition
+		  	changeElement(id, type, data, area)
 		  }
 
 		  create=(type)=>{
 		  	const {createElement} = this.props.content
-		  	createElement(type)
+		  	var area = this.state.nowPosition
+		  	createElement(type, area)
 		  }
 
 render(){
-	const {token} = this.props.user
+	const {token, count, task} = this.props.user
 	return(<div>
 				<Header create={this.create}/>
-				<WorkDisplay store={this.props.store} token={token} 
-				delete={this.deleteElement} change={this.change}/>
+				<WorkDisplay store={this.props.store} token={token} changePosit={this.changePosit}
+				delete={this.deleteElement} change={this.change} posit={this.state.nowPosition}/>
 			</div>
 
 		

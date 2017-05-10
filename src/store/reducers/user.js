@@ -4,10 +4,10 @@ import Code from './default-elements/code.js'
 import List from './default-elements/list.js'
 
 
-function search(id, task){
-  var fposit = 0
+function search(id, task, area){
+  var fposit = area
   var position = -1
-  for(var i=0;i<task[0].content.length;i++){
+  for(var i=0;i<task[fposit].content.length;i++){
         if(task[fposit].content[i].id ==  id){
           return [fposit,i]
           break;
@@ -60,7 +60,7 @@ function deleteelement(data, id) {
 
 function changesmth( id, data , chnagedata) {
     var task = data
-    var position = search(id, task)
+    var position = search(id, task, chnagedata[3])
     if(position){
       switch(chnagedata[1]){
         case 'size':
@@ -94,9 +94,9 @@ function changesmth( id, data , chnagedata) {
 
 function create (type, data){
   var task = data
-  var fposit = 0
-  var maxid = getMax_ID(task[0].content)
-  switch(type){
+  var fposit = type[1]
+  var maxid = getMax_ID(task[fposit].content)
+  switch(type[0]){
     case 'paragraph':
       var newData = Paragraph(maxid)
       break;
@@ -109,17 +109,21 @@ function create (type, data){
     case 'list':
         var newData = List(maxid)
         break;
+    case 'task':
+        task.push({type: "quest", content: []})
+        return(task)
+        break;
     default:
      return task
      break;
   }
-
   task[fposit].content.push(newData)
   return task
 }
 
 const initialState = {
 	token: '',
+  count: 1,
 	task: [
     {type: "mainquest", content: []}
   ]
@@ -130,6 +134,8 @@ export default function user(state = initialState, action) {
    switch (action.type) {
       case 'SET_TOKEN':
       return { ...state, token: action.payload }
+       case 'SET_COUNT':
+      return { ...state, count: action.payload }
        case 'DELETE':
         var task = deleteelement(state.task, action.payload)
         return { ...state, task: task}

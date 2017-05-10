@@ -11,29 +11,21 @@ import ListWorkWindow from './components/list.js'
 
 export default class MainDecodeWorkDisplay extends Component{
 
-	editSmth=(index)=>{
-		this.props.click(index)
-	}
-
-
+	
 
 
 render(){
-	var final = this.props.data.map(function(item, index){
+	var item = this.props.item
 		switch(item.type){
 			case "paragraph":
-				return(<ParagraphWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<ParagraphWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'img':
-				return(<ImageWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change} token={this.props.token}/>)
+				return(<ImageWorkWindow  data={item} delete={this.props.delete} change={this.props.change} token={this.props.token}/>)
 			case 'code':
-				return(<CodeWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<CodeWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'list':
-				return(<ListWorkWindow key={index} data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<ListWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
 		}
-	}.bind(this))
-	return(<div>{final}</div>)
-
-
 
 }
 }
