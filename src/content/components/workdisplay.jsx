@@ -72,11 +72,14 @@ constructor(props) {
 			  		task.map(function(item, index){
 			  			if(item.type == 'mainquest'){
 			  				return(	 <div key={index}>
-					                	<MainDisplay task={task[0]} delete={this.props.delete}
+					                	<MainDisplay task={item} delete={this.props.delete}
 										change={this.props.change} token={this.props.token}/>
 									</div>				)
 			  			}else{
-			  				return(	<div key={index}><Task/></div>)
+			  				return(	<div key={index}>
+			  							<Task  task={item} delete={this.props.delete}
+										change={this.props.change} token={this.props.token}/>
+			  						</div>)
 			  			}
 			  		}.bind(this))
 
@@ -99,7 +102,7 @@ render(){
 	var start = this.props.posit
 	var bottomItems = this.getBottomNavigation()
 	var content = this.getContent()
-	var final_content = <div ><Task/></div>
+	var final_content = <div >final</div>
 	var fianl_bottom = <BottomNavigationItem
 							            label="Конечный вид"
 							            icon={<ActionDone/>}

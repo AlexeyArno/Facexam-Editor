@@ -25,6 +25,8 @@ render(){
 				return(<CodeWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'list':
 				return(<ListWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
+			default:
+				return <div>Some failed!!!</div>
 		}
 
 }

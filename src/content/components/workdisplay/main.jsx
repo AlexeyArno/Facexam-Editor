@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import TaskWorkWindow from './decode/task.js'
 import MainDecodeWorkDisplay from './decode/mainDecode.js'
 
 

@@ -2,6 +2,8 @@ import Paragraph from './default-elements/paragraph.js'
 import Img from './default-elements/img.js'
 import Code from './default-elements/code.js'
 import List from './default-elements/list.js'
+import Check from './default-elements/check.js'
+import Radio from './default-elements/radio.js'
 
 
 function search(id, task, area){
@@ -41,17 +43,18 @@ function getMax_ID(task){
 
 
 
-function deleteelement(data, id) {
+function deleteelement(data, deletedata) {
     var task = data
- 
+    var id = deletedata[0]
+    var area = deletedata[1]
     var content = []
 
-    for(var i=0;i<task[0].content.length; i++){
-      if(task[0].content[i].id != id){
-        content.push(task[0].content[i])
+    for(var i=0;i<task[area].content.length; i++){
+      if(task[area].content[i].id != id){
+        content.push(task[area].content[i])
       }
     }
-    task[0].content = content
+    task[area].content = content
 
 
     return(task)
@@ -109,6 +112,12 @@ function create (type, data){
     case 'list':
         var newData = List(maxid)
         break;
+    case 'check':
+        var newData = Check(maxid)
+        break;
+    case 'radio':
+        var newData = Radio(maxid)
+        break;
     case 'task':
         task.push({type: "quest", content: []})
         return(task)
@@ -123,7 +132,6 @@ function create (type, data){
 
 const initialState = {
 	token: '',
-  count: 1,
 	task: [
     {type: "mainquest", content: []}
   ]
@@ -134,8 +142,6 @@ export default function user(state = initialState, action) {
    switch (action.type) {
       case 'SET_TOKEN':
       return { ...state, token: action.payload }
-       case 'SET_COUNT':
-      return { ...state, count: action.payload }
        case 'DELETE':
         var task = deleteelement(state.task, action.payload)
         return { ...state, task: task}
