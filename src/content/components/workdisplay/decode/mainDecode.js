@@ -8,6 +8,8 @@ import TooltipWorkWindow from './components/tooltip.js'
 import VideoWorkWindow from './components/video.js'
 import FormulWorkWindow from './components/formul.js'
 import ListWorkWindow from './components/list.js'
+import Check from './components/check.js'
+import Radio from './components/radio.js'
 
 export default class MainDecodeWorkDisplay extends Component{
 
@@ -25,6 +27,10 @@ render(){
 				return(<CodeWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'list':
 				return(<ListWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
+			case 'check':
+				return(<Check  data={item} delete={this.props.delete} change={this.props.change}/>)
+			case 'radio':
+				return(<Radio  data={item} delete={this.props.delete} change={this.props.change}/>)
 			default:
 				return <div>Some failed!!!</div>
 		}
