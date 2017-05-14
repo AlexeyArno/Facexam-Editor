@@ -4,6 +4,7 @@ import Code from './default-elements/code.js'
 import List from './default-elements/list.js'
 import Check from './default-elements/check.js'
 import Radio from './default-elements/radio.js'
+import Textfield from './default-elements/textfield.js'
 
 
 function search(id, task, area){
@@ -73,7 +74,11 @@ function changesmth( id, data , chnagedata) {
           task[position[0]].content[position[1]].content = chnagedata[2]
               break;
         case 'chooseBox':
-          task[position[0]].content[position[1]].content = chnagedata[2]
+          task[position[0]].content[position[1]].content = chnagedata[2][0]
+          task[position[0]].content[position[1]].answer = chnagedata[2][1]
+         case 'input':
+            task[position[0]].content[position[1]].ext = chnagedata[2][0]
+            task[position[0]].content[position[1]].answer = chnagedata[2][1]
               break;
         case 'url':
             var globalID = '/9'
@@ -89,7 +94,6 @@ function changesmth( id, data , chnagedata) {
                           content: 'Hello',
                           id:newID} 
             task[position[0]].content[position[1]].content.push(item)
-            console.log(task[position[0]].content[position[1]].content)
               break;
              
       }
@@ -117,6 +121,9 @@ function create (type, data){
     case 'check':
         var newData = Check(maxid)
         break;
+    case 'field':
+        var newData = Textfield(maxid)
+        break;
     case 'radio':
         var newData = Radio(maxid)
         break;
@@ -137,17 +144,15 @@ const initialState = {
 	task: [
     {type: "mainquest", content: []},
     {type: "quest", content: [
-    {
-      name: 'Новый check',
-      type: 'check',
-      id: 11,
+      {
+      name: 'Новый input',
+      type: 'field',
+      id: 21,
+      answer: 'kopa',
       size: 'full',
-      content: [
-        {type: 'box',
-        content: 'Hello',
-        id: 111}
-      ]
-  }]}
+      ext: 'Н'
+  }
+  ]}
   ]
 }
 

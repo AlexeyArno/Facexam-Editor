@@ -4,6 +4,7 @@ var Check = function(id){
 			type: 'check',
 			id: id,
 			size: 'full',
+			answer: [false],
 			content: [
 				{type: 'box',
 				content: 'Hello',

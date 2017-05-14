@@ -32,8 +32,9 @@ constructor(props) {
 		  		if(this.props.data.size == 'half'){
 		  			data= 'full'
 		  		}
+		  	}else{
+		  		this.handle()
 		  	}
-		  	this.handle()
 		  	this.props.change(id, type, data)
 		}
 
@@ -88,7 +89,7 @@ render(){
 	        	 	<IconButton onClick={()=>this.handle()} style={closeStyle}>
 	        	 		<Close color='rgb(33, 150, 243)'/>
 	        	 	</IconButton>
-	        	 	<ChooseModal data={this.props.data.content} save={this.change} id={this.props.data.id}/>
+	        	 	<ChooseModal data={this.props.data.content} save={this.change} id={this.props.data.id} answer={this.props.data.answer} type='check'/>
 	        	</Dialog>
 
 	var menu = <div className='pMenu'>

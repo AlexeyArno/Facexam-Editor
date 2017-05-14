@@ -52,6 +52,11 @@ constructor(props) {
 		  					message+= "создайте задачу"
 		  					open = true
 		  					break;
+		  				case 'field':
+		  					message = "'Поле ввода' нельзя содать в главном вопросе, "
+		  					message+= "создайте задачу"
+		  					open = true
+		  					break;
 		  				default:
 		  					return true
 		  			}
@@ -59,6 +64,32 @@ constructor(props) {
 		  				message, open
 		  			})
 		  			return false
+		  		case 'quest':
+		  			switch(type){
+		  				case 'check':
+		  				case 'radio':
+		  				case 'field':
+		  					var rights = true
+		  					task[area].content.map(function(item, index){
+		  							switch(item.type){
+		  								case 'check':
+		  								case 'radio':
+		  								case 'field':
+		  									rights = false
+		  							}
+		  					})
+		  					if(!rights){
+			  					message = "Нельзя создавать 2 элемента ответа в одной задаче, "
+			  					message+= "создайте новую задачу"
+			  					open = true
+		  					}else{
+		  						return true
+		  					}
+			  			this.setState({
+			  				message, open
+			  			})
+			  			return false
+		  			}
 		  		default:
 		  			return true
 		  	}

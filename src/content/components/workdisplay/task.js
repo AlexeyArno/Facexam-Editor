@@ -34,7 +34,6 @@ render(){
 		margin:'100px 0px',
 		minHeight: 100,
 	}
-	console.log(this.props.task)
 	var content = this.getContent()
 	return(<div  style={container}>
 			<Paper className='col-md-12 ' style={paper}>

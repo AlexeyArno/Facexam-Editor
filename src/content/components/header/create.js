@@ -7,6 +7,7 @@ import ActionList from 'material-ui/svg-icons/action/list'
 import ActionAssignment from 'material-ui/svg-icons/action/assignment'
 import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box'
 import ToggleRadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked'
+import EditorFormatBold from 'material-ui/svg-icons/editor/format-bold'
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 
@@ -29,7 +30,7 @@ render(){
 	
 	return(
 			<div>
-			<Subheader>В этом элементе</Subheader>
+			<Subheader>Локальные элементы</Subheader>
 				<div className="shellIconCreate" onClick={()=>this.create('paragraph')}>
 					<ActionDescription className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Абзац</div>
@@ -46,6 +47,8 @@ render(){
 					<ActionList className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Список</div>
 				</div>
+				 <Divider style={{height: 2, background: 'rgba(0,0,0,1)'}}/>
+				 <Subheader>Ответы пользователя</Subheader>
 				<div className="shellIconCreate" onClick={()=>this.create('check')}>
 					<ToggleCheckBox className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Флажок</div>
@@ -54,8 +57,12 @@ render(){
 					<ToggleRadioButtonChecked className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Переключа́тель</div>
 				</div>
+				<div className="shellIconCreate" onClick={()=>this.create('field')}>
+					<EditorFormatBold className='iconCreate' color='rgba(0,0,0,0.4)'/>
+					<div style={{color: 'rgba(0,0,0,0.7)'}}>Поле ввода</div>
+				</div>
 				 <Divider style={{height: 2, background: 'rgba(0,0,0,1)'}}/>
-				 <Subheader>Во всем задании</Subheader>
+				 <Subheader>Глобальные</Subheader>
 				<div className="shellIconCreate" onClick={()=>this.create('task')}>
 					<ActionAssignment className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Задание</div>

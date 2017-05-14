@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 
 import ParagraphWorkWindow from './components/paragraph.js'
-import TitlehWorkWindow from './components/title.js'
 import ImageWorkWindow from './components/image.js'
 import CodeWorkWindow from './components/code.js'
-import TooltipWorkWindow from './components/tooltip.js'
-import VideoWorkWindow from './components/video.js'
 import FormulWorkWindow from './components/formul.js'
 import ListWorkWindow from './components/list.js'
 import Check from './components/check.js'
 import Radio from './components/radio.js'
+import TextFieldAnswer from './components/textfield.js'
 
 export default class MainDecodeWorkDisplay extends Component{
 
@@ -31,6 +29,8 @@ render(){
 				return(<Check  data={item} delete={this.props.delete} change={this.props.change}/>)
 			case 'radio':
 				return(<Radio  data={item} delete={this.props.delete} change={this.props.change}/>)
+			case 'field':
+				return(<TextFieldAnswer  data={item} delete={this.props.delete} change={this.props.change}/>)
 			default:
 				return <div>Some failed!!!</div>
 		}

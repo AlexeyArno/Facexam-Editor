@@ -4,6 +4,7 @@ var Radio = function(id){
 			type: 'radio',
 			id: id,
 			size: 'full',
+			answer: 0,
 			content: [
 				{type: 'button',
 				content: 'Hello',
