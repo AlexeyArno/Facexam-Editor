@@ -33,6 +33,7 @@ constructor(props) {
 		  			data= 'full'
 		  		}
 		  	}
+		  	this.handle()
 		  	this.props.change(id, type, data)
 		}
 
@@ -73,17 +74,21 @@ render(){
 			top: '15px',
 			right: '20px'
 		}
+		console.log(this.props.data)
 	var dialog =  <Dialog
 				          title="Изменение"
 				          titleStyle={{color: 'rgb(33, 150, 243)'}}
 				          modal={true}
 				          open={this.state.open}
 				          onRequestClose={this.handle}
+				          autoScrollBodyContent={true}
+				          autoDetectWindowHeight={true}
+				         	bodyClassName='choose-modal'
 				        	>
 	        	 	<IconButton onClick={()=>this.handle()} style={closeStyle}>
 	        	 		<Close color='rgb(33, 150, 243)'/>
 	        	 	</IconButton>
-	        	 	<ChooseModal/>
+	        	 	<ChooseModal data={this.props.data.content} save={this.change} id={this.props.data.id}/>
 	        	</Dialog>
 
 	var menu = <div className='pMenu'>

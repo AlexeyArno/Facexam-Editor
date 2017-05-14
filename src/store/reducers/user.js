@@ -72,7 +72,9 @@ function changesmth( id, data , chnagedata) {
         case 'content':
           task[position[0]].content[position[1]].content = chnagedata[2]
               break;
-          
+        case 'chooseBox':
+          task[position[0]].content[position[1]].content = chnagedata[2]
+              break;
         case 'url':
             var globalID = '/9'
            task[position[0]].content[position[1]].url = 'http://127.0.0.1:9999/'+'task_img'+globalID+'/'+chnagedata[2]
@@ -133,7 +135,19 @@ function create (type, data){
 const initialState = {
 	token: '',
 	task: [
-    {type: "mainquest", content: []}
+    {type: "mainquest", content: []},
+    {type: "quest", content: [
+    {
+      name: 'Новый check',
+      type: 'check',
+      id: 11,
+      size: 'full',
+      content: [
+        {type: 'box',
+        content: 'Hello',
+        id: 111}
+      ]
+  }]}
   ]
 }
 

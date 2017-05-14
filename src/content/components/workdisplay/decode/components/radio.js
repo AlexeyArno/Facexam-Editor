@@ -34,6 +34,7 @@ constructor(props) {
 		  			data= 'full'
 		  		}
 		  	}
+		  	this.handle()
 		  	this.props.change(id, type, data)
 		}
 
@@ -81,11 +82,14 @@ render(){
 				          modal={true}
 				          open={this.state.open}
 				          onRequestClose={this.handle}
+				          autoScrollBodyContent={true}
+				         bodyClassName='choose-modal'
 				        	>
 	        	 	<IconButton onClick={()=>this.handle()} style={closeStyle}>
 	        	 		<Close color='rgb(33, 150, 243)'/>
 	        	 	</IconButton>
-	        	 	<ChooseModal/>
+	        	 	<ChooseModal data={this.props.data.content}
+	        	 	save={this.change} id={this.props.data.id}/>
 	        	</Dialog>
 
 
@@ -104,7 +108,7 @@ render(){
 	return(<div className={name}>
 				{dialog}
 				{menu}
-				 <RadioButtonGroup name={this.props.data.id} defaultSelected="nothing">
+				 <RadioButtonGroup name={String(this.props.data.id)} defaultSelected="nothing">
 					{checks}
 				</RadioButtonGroup>
 			</div>)
