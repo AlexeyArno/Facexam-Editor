@@ -87,7 +87,10 @@ render(){
 	        	 	</IconButton>
 	        	 	<CodeRedactor value={this.props.data} close={this.handle} change={this.change} />
 	        	</Dialog>
-
+	if(this.props.type == 'present'){
+		dialog = <div/>
+		elements =<div/>
+	}
 	return(<div style={{paddingRight: "20px"}} className={name}>
 				{elements}
 				{dialog}

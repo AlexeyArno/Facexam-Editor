@@ -90,6 +90,14 @@ render(){
 			if(this.props.data.size == 'half'){
 				name = 'col-md-6'
 			}
+			if(this.props.type == 'present'){
+				elements = <div/>
+				return(
+					<div style={{paddingRight: "20px"}} className={name}>
+							{elements}
+							<p>{content}</p>
+					</div>)
+			}
 
 			return(
 					<div style={{paddingRight: "20px"}} className={name}>

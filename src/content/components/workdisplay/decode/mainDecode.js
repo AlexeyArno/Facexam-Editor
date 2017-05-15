@@ -18,19 +18,19 @@ render(){
 	var item = this.props.item
 		switch(item.type){
 			case "paragraph":
-				return(<ParagraphWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<ParagraphWorkWindow  data={item} delete={this.props.delete} change={this.props.change} type={this.props.type}/>)
 			case 'img':
-				return(<ImageWorkWindow  data={item} delete={this.props.delete} change={this.props.change} token={this.props.token}/>)
+				return(<ImageWorkWindow  data={item} delete={this.props.delete} change={this.props.change} token={this.props.token}  type={this.props.type}/>)
 			case 'code':
-				return(<CodeWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<CodeWorkWindow  data={item} delete={this.props.delete} change={this.props.change}  type={this.props.type}/>)
 			case 'list':
-				return(<ListWorkWindow  data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<ListWorkWindow  data={item} delete={this.props.delete} change={this.props.change}  type={this.props.type}/>)
 			case 'check':
-				return(<Check  data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<Check  data={item} delete={this.props.delete} change={this.props.change}  type={this.props.type}/>)
 			case 'radio':
-				return(<Radio  data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<Radio  data={item} delete={this.props.delete} change={this.props.change}  type={this.props.type}/>)
 			case 'field':
-				return(<TextFieldAnswer  data={item} delete={this.props.delete} change={this.props.change}/>)
+				return(<TextFieldAnswer  data={item} delete={this.props.delete} change={this.props.change}  type={this.props.type}/>)
 			default:
 				return <div>Some failed!!!</div>
 		}

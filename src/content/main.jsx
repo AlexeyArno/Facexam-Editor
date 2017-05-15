@@ -38,22 +38,40 @@ constructor(props) {
 		  check_on_valid=(type, task, area)=>{
 		  	var message = ''
 		  	var open = false
-		  	var dislocationOfComponent = task[area].type
+		  	try{
+		  		var dislocationOfComponent = task[area].type
+		  	}
+		  	catch(e){
+		  		message = "Этот элемент нельзя создать в здесь, "
+			  	message+= "создайте задачу"
+			  	open = true
+		  		switch(type){
+		  				case 'task':
+		  					return true
+		  					break;
+		  				default:
+		  					this.setState({
+				  				message, open
+				  			})
+				  			return false
+		  			}
+		  		
+		  	}
 		  	switch(dislocationOfComponent){
 		  		case 'mainquest':
 		  			switch(type){
 		  				case 'check':
-		  					message = "'Флажок' нельзя содать в главном вопросе, "
+		  					message = "'Флажок' нельзя создать в главном вопросе, "
 		  					message+= "создайте задачу"
 		  					open = true
 		  					break;
 		  				case 'radio':
-		  					message = "'Переключатель' нельзя содать в главном вопросе, "
+		  					message = "'Переключатель' нельзя создать в главном вопросе, "
 		  					message+= "создайте задачу"
 		  					open = true
 		  					break;
 		  				case 'field':
-		  					message = "'Поле ввода' нельзя содать в главном вопросе, "
+		  					message = "'Поле ввода' нельзя создать в главном вопросе, "
 		  					message+= "создайте задачу"
 		  					open = true
 		  					break;

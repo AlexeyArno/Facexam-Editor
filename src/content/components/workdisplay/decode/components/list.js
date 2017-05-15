@@ -27,6 +27,11 @@ export default class ListWorkWindow extends Component{
 
 	getItem=(item, index)=>{
 		if(item.type == 'text'){
+			if(this.props.type == 'present'){
+				return(<li key={index} style={{lineHeight: 1.6}}>
+						{item.content}
+					</li>)
+			}
 			return(<li key={index} style={{lineHeight: 0}}>
 						<textarea className="redactorTextLi" cols="40" rows='1' value={item.content}
 						onChange={(event)=>this.handleChange(event, item.id)} id={item.id}/>
@@ -76,6 +81,9 @@ render(){
 						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>
 						</div>
+	if(this.props.type == 'present'){
+		elements =<div/>
+	}
 	
 	return(<div style={{paddingRight: 20}} className={name}>
 			{elements}

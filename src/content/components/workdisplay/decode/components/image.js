@@ -80,6 +80,10 @@ export default class ImageWorkWindow extends Component{
 				        	 	</IconButton>
 				        	 	<ImageSettings token={this.props.token} change={this.change} close={this.handle}/>
 				        	</Dialog>
+		if(this.props.type == 'present'){
+		dialog = <div/>
+		elements =<div/>
+	}
 		return(<div className={name}>
 					{dialog}
 					{elements}

@@ -104,6 +104,10 @@ function changesmth( id, data , chnagedata) {
 function create (type, data){
   var task = data
   var fposit = type[1]
+  if(type[0] == 'task'){
+     task.push({type: "quest", content: []})
+      return(task)
+  }
   var maxid = getMax_ID(task[fposit].content)
   switch(type[0]){
     case 'paragraph':
@@ -126,10 +130,6 @@ function create (type, data){
         break;
     case 'radio':
         var newData = Radio(maxid)
-        break;
-    case 'task':
-        task.push({type: "quest", content: []})
-        return(task)
         break;
     default:
      return task

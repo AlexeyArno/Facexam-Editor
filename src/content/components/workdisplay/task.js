@@ -16,7 +16,7 @@ constructor(props) {
 		  getContent=()=>{
 		  	return(this.props.task.content.map(function(item, index){
 			  	return(
-			  				<MainDecodeWorkDisplay key={index} item={item} delete={this.props.delete} 
+			  				<MainDecodeWorkDisplay key={index} item={item} delete={this.props.delete} type='redactor'
 			  				token={this.props.token} index={index} theme={false} change={this.props.change}/>
 			  			)
 			  	}.bind(this))
@@ -33,6 +33,8 @@ render(){
 		maxWidth: 800,
 		margin:'100px 0px',
 		minHeight: 100,
+		paddingTop: 20,
+		paddingBottom: 20
 	}
 	var content = this.getContent()
 	return(<div  style={container}>

@@ -103,6 +103,10 @@ render(){
 						    	<MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>
 						</div>
+	if(this.props.type == 'present'){
+		dialog = <div/>
+		menu =<div/>
+	}
 	var checks = this.getBoxes(this.props.data.content)
 	return(<div className={name}>
 				{dialog}

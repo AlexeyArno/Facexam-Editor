@@ -12,6 +12,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ReactSwipe from 'react-swipe';
 import Task from './workdisplay/task.js'
+import Final from './workdisplay/final.js'
 
 import { bindActionCreators } from 'redux'
 
@@ -102,7 +103,7 @@ render(){
 	var start = this.props.posit
 	var bottomItems = this.getBottomNavigation()
 	var content = this.getContent()
-	var final_content = <div >final</div>
+	var final_content = <div ><Final content={task}/></div>
 	var fianl_bottom = <BottomNavigationItem
 							            label="Конечный вид"
 							            icon={<ActionDone/>}

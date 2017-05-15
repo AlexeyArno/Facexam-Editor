@@ -105,6 +105,10 @@ render(){
 						    </IconMenu>
 						</div>
 	var checks = this.getBoxes(this.props.data.content)
+	if(this.props.type == 'present'){
+		dialog = <div/>
+		menu =<div/>
+	}
 	return(<div className={name}>
 				{dialog}
 				{menu}
