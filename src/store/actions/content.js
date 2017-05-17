@@ -2,7 +2,7 @@ export function changeElement(id, type, data, area) {
 
   return {
     type: 'CHANGE',
-    payload: [id, type, data, area]
+    payload: {id: id, type: type, value: data, area: area}
   }
 
 }
@@ -10,16 +10,15 @@ export function deleteElement(id, area) {
 
   return {
     type: 'DELETE',
-    payload: [id, area]
+    payload: {id: id, area: area}
   }
 
 }
 
 export function createElement(type, area) {
-
   return {
     type: 'CREATE',
-    payload: [type, area]
+    payload: {type: type, area: area}
   }
 
 }

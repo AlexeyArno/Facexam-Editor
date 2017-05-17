@@ -19,7 +19,7 @@ constructor(props) {
 		  }
 
 		  save=()=>{
-		    this.props.save('chooseBox',  [this.state.data, this.state.answer])
+		    this.props.save('chooseBox',  {content: this.state.data, answer:this.state.answer})
 		  }
 
 		 changeRadio = (event, index, value) => this.setState({answer: value});

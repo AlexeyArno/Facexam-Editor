@@ -6,6 +6,7 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment'
+import ActionAssignmentTurnedIn from 'material-ui/svg-icons/action/assignment-turned-in'
 import ActionDone from 'material-ui/svg-icons/action/done'
 import ImageBrush from 'material-ui/svg-icons/image/brush'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,6 +14,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ReactSwipe from 'react-swipe';
 import Task from './workdisplay/task.js'
 import Final from './workdisplay/final.js'
+import Description from './workdisplay/description.js'
 
 import { bindActionCreators } from 'redux'
 
@@ -46,7 +48,7 @@ constructor(props) {
 		  getBottomNavigation=()=>{
 		  	var {task} = this.props.user
 		  	return(
-			  		task.map(function(item, index){
+			  		task.content.map(function(item, index){
 			  			if(item.type == 'mainquest'){
 			  				return(	<BottomNavigationItem
 							            label="Главный вопрос"
@@ -54,7 +56,7 @@ constructor(props) {
 							            icon={<ActionAssignment/>}
 							            onTouchTap={() => this.select(index)}
 							          />					)
-			  			}else{
+			  			}else if(item.type == 'quest'){
 			  				return(	<BottomNavigationItem
 							            label={index+' задача'}
 							            key={index}
@@ -70,13 +72,13 @@ constructor(props) {
 		  getContent=()=>{
 		  	var {task} = this.props.user
 		  	return(
-			  		task.map(function(item, index){
+			  		task.content.map(function(item, index){
 			  			if(item.type == 'mainquest'){
 			  				return(	 <div key={index}>
 					                	<MainDisplay task={item} delete={this.props.delete}
 										change={this.props.change} token={this.props.token}/>
 									</div>				)
-			  			}else{
+			  			}else if(item.type == 'quest'){
 			  				return(	<div key={index}>
 			  							<Task  task={item} delete={this.props.delete}
 										change={this.props.change} token={this.props.token}/>
@@ -103,11 +105,20 @@ render(){
 	var start = this.props.posit
 	var bottomItems = this.getBottomNavigation()
 	var content = this.getContent()
-	var final_content = <div ><Final content={task}/></div>
+	var description_content= <div >
+			  							<Description  task={task.description.content} delete={this.props.delete}
+										change={this.props.change} token={this.props.token}/>
+			  						</div>
+	var description_button = <BottomNavigationItem
+							            label={'Объяснение'}
+							            icon={<ActionAssignmentTurnedIn/>}
+							            onTouchTap={() => this.select(content.length)}
+							          />		
+	var final_content = <div ><Final content={task.content}/></div>
 	var fianl_bottom = <BottomNavigationItem
 							            label="Конечный вид"
 							            icon={<ActionDone/>}
-							            onTouchTap={() => this.select(content.length)}
+							            onTouchTap={() => this.select(content.length+1)}
 							          />
 	return(
 		<div>
@@ -115,11 +126,13 @@ render(){
 		  					swipeOptions={{continuous: false, startSlide: start,
 		  					speed: 600}} >
                 {content}
+                {description_content}
                 {final_content}
             </ReactSwipe>
 		 <MuiThemeProvider muiTheme={muiTheme}>
 			<BottomNavigation selectedIndex={start} className='bottomNavigation'>
 	          {bottomItems}
+	          {description_button}
 	          {fianl_bottom}
 	        </BottomNavigation>
 	        </MuiThemeProvider>

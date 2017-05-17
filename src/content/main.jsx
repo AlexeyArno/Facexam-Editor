@@ -39,7 +39,7 @@ constructor(props) {
 		  	var message = ''
 		  	var open = false
 		  	try{
-		  		var dislocationOfComponent = task[area].type
+		  		var dislocationOfComponent = task.content[area].type
 		  	}
 		  	catch(e){
 		  		message = "Этот элемент нельзя создать в здесь, "
@@ -137,6 +137,8 @@ constructor(props) {
 
 render(){
 	const {token, count, task} = this.props.user
+	console.log(this.state.nowPosition)
+
 	return(<div>
 				<Header create={this.create}/>
 				<WorkDisplay store={this.props.store} token={token} changePosit={this.changePosit}

@@ -14,7 +14,7 @@ constructor(props) {
 		  }
 
 		   save=()=>{
-		    this.props.save('input',  [this.state.data, this.state.answer])
+		    this.props.save('input',  {extension: this.state.data, answer: this.state.answer})
 		  }
 
 render(){
