@@ -12,6 +12,10 @@ import Change from '../data-work/change-smth.js'
 var Create = function(type, area, task) {
 	var location = (area==task.content.length) ? (task.description): (task.content[area].content)
 	var new_id = NewId(location)
+  if(type == 'task'){
+     task.content.push({type: "quest", content: []})
+      return(task)
+  }
 	switch(type){
     case 'paragraph':
       var new_element = Paragraph(new_id)

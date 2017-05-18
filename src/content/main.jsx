@@ -6,7 +6,8 @@ import Snackbar from 'material-ui/Snackbar';
 import { connect } from 'react-redux';
 import * as content from '../store/actions/content.js'
 import { bindActionCreators } from 'redux'
-
+import IssueProcessing from './main-functions/issue-proccessing.js'
+import Save from './main-functions/save.js'
 
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
@@ -36,88 +37,31 @@ constructor(props) {
 		  };
 
 		  check_on_valid=(type, task, area)=>{
-		  	var message = ''
-		  	var open = false
-		  	try{
-		  		var dislocationOfComponent = task.content[area].type
-		  	}
-		  	catch(e){
-		  		message = "Этот элемент нельзя создать в здесь, "
-			  	message+= "создайте задачу"
-			  	open = true
-		  		switch(type){
-		  				case 'task':
-		  					return true
-		  					break;
-		  				default:
-		  					this.setState({
-				  				message, open
-				  			})
-				  			return false
-		  			}
-		  		
-		  	}
-		  	switch(dislocationOfComponent){
-		  		case 'mainquest':
-		  			switch(type){
-		  				case 'check':
-		  					message = "'Флажок' нельзя создать в главном вопросе, "
-		  					message+= "создайте задачу"
-		  					open = true
-		  					break;
-		  				case 'radio':
-		  					message = "'Переключатель' нельзя создать в главном вопросе, "
-		  					message+= "создайте задачу"
-		  					open = true
-		  					break;
-		  				case 'field':
-		  					message = "'Поле ввода' нельзя создать в главном вопросе, "
-		  					message+= "создайте задачу"
-		  					open = true
-		  					break;
-		  				default:
-		  					return true
-		  			}
-		  			this.setState({
-		  				message, open
-		  			})
-		  			return false
-		  		case 'quest':
-		  			switch(type){
-		  				case 'check':
-		  				case 'radio':
-		  				case 'field':
-		  					var rights = true
-		  					task[area].content.map(function(item, index){
-		  							switch(item.type){
-		  								case 'check':
-		  								case 'radio':
-		  								case 'field':
-		  									rights = false
-		  							}
-		  					})
-		  					if(!rights){
-			  					message = "Нельзя создавать 2 элемента ответа в одной задаче, "
-			  					message+= "создайте новую задачу"
-			  					open = true
-		  					}else{
-		  						return true
-		  					}
-			  			this.setState({
-			  				message, open
-			  			})
-			  			return false
-		  			}
-		  		default:
-		  			return true
+		  	var answer = IssueProcessing(type, task, area)
+		  	if(answer.pass){
+		  		return true
+		  	}else{
+		  		this.setState({
+			  		message: answer.message, 
+			  		open: true
+			  	})
+			  	return false
+
 		  	}
 		  }
+
+		  saveContent=()=>{
+		  	const {task, token} = this.props.user
+		  	Save(task, token)
+		  }
+
+
+
 
 		  deleteElement=(id)=>{
 		  	const {deleteElement} = this.props.content
 		  	var area = this.state.nowPosition
 		  	deleteElement(id, area)
-
 		  }
 
 		  change=(id, type, data)=>{
@@ -137,10 +81,8 @@ constructor(props) {
 
 render(){
 	const {token, count, task} = this.props.user
-	console.log(this.state.nowPosition)
-
 	return(<div>
-				<Header create={this.create}/>
+				<Header create={this.create} save={this.saveContent}/>
 				<WorkDisplay store={this.props.store} token={token} changePosit={this.changePosit}
 				delete={this.deleteElement} change={this.change} posit={this.state.nowPosition}/>
 				<Snackbar

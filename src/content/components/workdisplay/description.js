@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
+import MainDecodeWorkDisplay from './decode/mainDecode.js'
 
 export default class Description extends Component{
 
@@ -8,6 +9,16 @@ constructor(props) {
 		    this.state = {
 		    	
 		    };
+		  }
+
+		  getContent=()=>{
+		  	return(this.props.content.map(function(item, index){
+			  	return(
+			  				<MainDecodeWorkDisplay key={index} item={item} delete={this.props.delete} token={this.props.token}
+			  				index={index} theme={false} editSmth={this.editSmth} change={this.props.change} type='redactor'/>
+			  			)
+			  	}.bind(this))
+		  	)
 		  }
 
 render(){
@@ -22,7 +33,7 @@ render(){
 		paddingTop: 20,
 		paddingBottom: 20
 	}
-	var content = 'Hello'
+	var content = this.getContent()
 	return(<div  style={container}>
 			<Paper className='col-md-12 ' style={paper}>
 					{content}

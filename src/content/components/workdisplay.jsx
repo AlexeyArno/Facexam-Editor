@@ -106,7 +106,7 @@ render(){
 	var bottomItems = this.getBottomNavigation()
 	var content = this.getContent()
 	var description_content= <div >
-			  							<Description  task={task.description.content} delete={this.props.delete}
+			  							<Description  content={task.description} delete={this.props.delete}
 										change={this.props.change} token={this.props.token}/>
 			  						</div>
 	var description_button = <BottomNavigationItem

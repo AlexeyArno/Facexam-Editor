@@ -4,6 +4,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -60,10 +61,20 @@ render(){
 	}
 	const iconStyleLeft={
 		    verticalAlign: "top",
-		    marginTop: 9	}
+		    marginTop: 9,
+		    display: 'inline-block'	}
+
 	var element = <IconButton onClick={()=>this.chnageCreate()}>
 						<ContentAdd/>
 					</IconButton>
+	var element_left =  <IconMenu
+					    iconButtonElement={<IconButton ><NavigationMenu color='#fff' /></IconButton>}
+					    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+					    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+					    className='helllos'
+					  >
+					    <MenuItem primaryText="Сохранить" onClick={()=>this.props.save()}/>
+			    </IconMenu>
 	
 	return( 
 	 <div>
@@ -71,6 +82,7 @@ render(){
 		    title="Редактор"
 		    style={{background: '#4285f4', position: 'fixed', top: 0}}
 		    titleStyle={titleStyle}
+		    iconElementLeft={element_left}
 		    iconElementRight={element}
 		    iconStyleLeft={iconStyleLeft}
 		    iconStyleRight={iconStyleRight}

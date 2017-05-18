@@ -8,6 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
 import Close from 'material-ui/svg-icons/navigation/close';
 import TextFieldModal from './redactor-instruments/text-filed-redactor.js'
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 export default class TextFieldAnswer extends Component{
 
@@ -85,6 +86,12 @@ render(){
 						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
 						    >	
 						    	<MenuItem primaryText="Редактировать" onClick={()=>this.setState({open: true})}/>
+						    	<MenuItem primaryText="Изменить позицию" rightIcon={<ArrowDropRight />}
+						       menuItems={[
+							        <MenuItem primaryText="Вверх"  onClick={()=>this.change('up')}/>,
+							        <MenuItem primaryText="Вниз" onClick={()=>this.change('down')}/>,
+							      ]} 
+						      />
 						    	<MenuItem primaryText="Изменить ширину" onClick={()=>this.change('size')}/>
 						    	<MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>

@@ -20,13 +20,12 @@ constructor(props) {
 		  }
 
 		  takeSmth=(url)=>{
-		  	console.log(url)
 		  	this.props.takeYetDownloaded(url)
 		  }
 
 		  deleteElemente=(name)=>{
 		  	var xmlhttp = new XMLHttpRequest()
-					var body =  JSON.stringify({token: this.props.token, code: '232323', id: 9, name: name})
+					var body =  JSON.stringify({token: this.props.token, code: '232323', id: 2, name: name})
 					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/delete_img', false);
 					xmlhttp.send(body);  
 					if(xmlhttp.status == 200) {
@@ -43,7 +42,7 @@ constructor(props) {
 		    getImages=()=>{
 		  			var xmlhttp = new XMLHttpRequest()
 					var body =  JSON.stringify({token: this.props.token, code: '232323'})
-					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/task_images/9', false);
+					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/task_images/2', false);
 					xmlhttp.send(body);  
 					if(xmlhttp.status == 200) {
 					var request = JSON.parse(xmlhttp.responseText)
@@ -54,7 +53,7 @@ constructor(props) {
 		  }
 
 		  renderImages=(images)=>{
-		  	var host = 'http://127.0.0.1:9999/task_img/9'
+		  	var host = 'http://127.0.0.1:9999/task_img/2'
 		  	var final = images.map(function(item, index){
 		  		var url = host+'/'+item.slice(0,-4)
 		  			return(<div key={index} style={{display: 'inline-block'}}>
@@ -84,7 +83,7 @@ constructor(props) {
 render(){
 	var images = this.state.images
 	var picture_images = this.renderImages(images)
-	const host = 'http://127.0.0.1:9999/task_img/9/'
+	const host = 'http://127.0.0.1:9999/task_img/2/'
 	return( <div className="col-xs-12 col-md-12 paper">
 				<Paper >
 

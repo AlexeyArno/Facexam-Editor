@@ -1,6 +1,8 @@
 import  FindGlobal from './find-global.js'
 
 
+
+
 var Change  = function(id, type, value, area, task){
 	var finddata = FindGlobal(area, id, task)
 	var element = (finddata.location == 'content') ? (task.content[area].content[finddata.element]) : (task.description[finddata.element])
@@ -8,6 +10,10 @@ var Change  = function(id, type, value, area, task){
 		 case 'size':
 		 	element.size = value
 		 	break;
+		 case 'up':
+		 	return Up(finddata.location, task, area, finddata.element)
+		 case 'down':
+		 	return Down(finddata.location, task, area, finddata.element)
 		 case 'content':
 		 	element.content = value
 		 	break;
@@ -20,7 +26,7 @@ var Change  = function(id, type, value, area, task){
 		 	element.answer = value.answer
 		 	break;
 		 case 'url':
-			var globalID = '/9'
+			var globalID = '/2'
           	element.url = 'http://127.0.0.1:9999/'+'task_img'+globalID+'/'+value
           	break;
 	}	
@@ -61,3 +67,27 @@ export default Change
 //               break;
              
 //       }
+
+
+function Up(location, task, area, element){
+	if(element == 0){
+		return task
+	}else{
+		var space = (location == 'content') ? (task.content[area].content) : (task.description)
+		var p = space[element]
+		space[element] = space[element-1]
+		space[element-1] = p
+	}
+	return task
+}
+
+function Down(location, task, area, element){
+	var space = (location == 'content') ? (task.content[area].content) : (task.description)
+	if(area == space.length){
+		return task
+	}
+	var p = space[element]
+	space[element] = space[element+1]
+	space[element+1] = p
+	return task
+}

@@ -5,6 +5,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import ToggleRadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked'
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 import Dialog from 'material-ui/Dialog';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -100,6 +101,12 @@ render(){
 						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
 						    >	
 						    	<MenuItem primaryText="Редактировать" onClick={()=>this.setState({open: true})}/>
+						    	<MenuItem primaryText="Изменить позицию" rightIcon={<ArrowDropRight />}
+						       menuItems={[
+							        <MenuItem primaryText="Вверх"  onClick={()=>this.change('up')}/>,
+							        <MenuItem primaryText="Вниз" onClick={()=>this.change('down')}/>,
+							      ]} 
+						      />
 						    	<MenuItem primaryText="Изменить ширину" onClick={()=>this.change('size')}/>
 						    	<MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>

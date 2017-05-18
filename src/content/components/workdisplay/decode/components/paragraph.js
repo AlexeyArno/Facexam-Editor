@@ -8,7 +8,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 
 // SETTINGS 
@@ -36,12 +36,13 @@ export default class ParagraphWorkWindow extends Component{
 		  	this.props.delete(id)
 		  }
 
-		  change=(id, type)=>{
+		  change=(type)=>{
+		  	var id = this.props.data.id
 		  	var data = ''
-		  	if(type = 'size'){
+		  	if(type == 'size'){
 		  		data = "half"
 		  		if(this.props.data.size == 'half'){
-		  			data= 'full'
+		  			data = 'full'
 		  		}
 		  	}
 		  	this.props.change(id, type, data)
@@ -81,7 +82,13 @@ render(){
 						      anchorOrigin={{horizontal: 'left', vertical: 'top'}}
 						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
 						    >
-						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( this.props.data.id, 'size')}/>
+						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( 'size')}/>
+						      <MenuItem primaryText="Изменить позицию" rightIcon={<ArrowDropRight />}
+						       menuItems={[
+							        <MenuItem primaryText="Вверх"  onClick={()=>this.change('up')}/>,
+							        <MenuItem primaryText="Вниз" onClick={()=>this.change('down')}/>,
+							      ]} 
+						      />
 						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente( this.props.data.id)}/>
 						    </IconMenu>
 						</div>

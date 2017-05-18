@@ -17,7 +17,8 @@ constructor(props) {
 
 
 		  takeYetDownloaded=(url)=>{
-		  	var host = 'http://127.0.0.1:9999/task_img/9'
+		  	console.log(url)
+		  	var host = 'http://127.0.0.1:9999/task_img/2'
 		  	var real = host+'/'+url
 		  		this.setState({
 		  			load: true,
@@ -29,13 +30,12 @@ constructor(props) {
 
 
 		  download=()=>{
-		  	console.log(this.state.files[0])
 		  	var formData = new FormData();
 		  	formData.append('token',this.props.token);
 		  	formData.append('code','232323');
 		  	formData.append('file', this.state.files[0], 'new.png');
 		  	var xmlhttp = new XMLHttpRequest()
-			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/download_task_img/9', false);
+			xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/download_task_img/2', false);
 			xmlhttp.send(formData);
 			if(xmlhttp.status == 200) {
 				var request = JSON.parse(xmlhttp.responseText)

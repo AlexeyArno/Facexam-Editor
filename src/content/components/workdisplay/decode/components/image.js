@@ -9,6 +9,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Dialog from 'material-ui/Dialog';
 import Close from 'material-ui/svg-icons/navigation/close';
+import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 
 import ImageSettings from './redactor-instruments/image.js'
@@ -63,6 +64,12 @@ export default class ImageWorkWindow extends Component{
 						      targetOrigin={{horizontal: 'left', vertical: 'top'}}
 						    >
 						      <MenuItem primaryText="Редактировать" onClick={()=>this.setState({open: true})}/>
+						      <MenuItem primaryText="Изменить позицию" rightIcon={<ArrowDropRight />}
+						       menuItems={[
+							        <MenuItem primaryText="Вверх"  onClick={()=>this.change('up')}/>,
+							        <MenuItem primaryText="Вниз" onClick={()=>this.change('down')}/>,
+							      ]} 
+						      />
 						      <MenuItem primaryText="Изменить ширину" onClick={()=>this.change( 'size')}/>
 						      <MenuItem primaryText="Удалить" onClick={()=>this.deleteElemente()}/>
 						    </IconMenu>
