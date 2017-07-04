@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-
 import IconButton from 'material-ui/IconButton';
-import ContentCreate from 'material-ui/svg-icons/content/create'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import { docco } from 'react-syntax-highlighter/dist/styles';
-import ActionCode from 'material-ui/svg-icons/action/code'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';

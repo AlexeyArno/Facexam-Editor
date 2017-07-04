@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import AppBar from 'material-ui/AppBar';
-import HardwareKeyboardArrowRight from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
-import IconButton from 'material-ui/IconButton';
+
 
 
 export default class PSettings extends Component{

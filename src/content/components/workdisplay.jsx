@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import MainDisplay from './workdisplay/main.jsx'
 import { connect } from 'react-redux';
-import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment'
 import ActionAssignmentTurnedIn from 'material-ui/svg-icons/action/assignment-turned-in'
 import ActionDone from 'material-ui/svg-icons/action/done'
@@ -16,8 +13,7 @@ import Task from './workdisplay/task.js'
 import Final from './workdisplay/final.js'
 import Description from './workdisplay/description.js'
 
-import { bindActionCreators } from 'redux'
-
+import ButtonControll from './buttonControl.js'
 
 class WorkDisplay extends Component{
 
@@ -32,6 +28,9 @@ constructor(props) {
 		  	this.props.changePosit(index)
 		   	this.slide(index)
 		   };
+		   save=()=>{
+		   	this.props.save()
+		   }
 
 		next=()=>{
 		    this.refs.reactSwipe.next();
@@ -75,12 +74,12 @@ constructor(props) {
 			  		task.content.map(function(item, index){
 			  			if(item.type == 'mainquest'){
 			  				return(	 <div key={index}>
-					                	<MainDisplay task={item} delete={this.props.delete}
+					                	<MainDisplay task={item} delete={this.props.delete} id={this.props.id}
 										change={this.props.change} token={this.props.token}/>
 									</div>				)
 			  			}else if(item.type == 'quest'){
 			  				return(	<div key={index}>
-			  							<Task  task={item} delete={this.props.delete}
+			  							<Task  task={item} delete={this.props.delete} id={this.props.id}
 										change={this.props.change} token={this.props.token}/>
 			  						</div>)
 			  			}
@@ -129,6 +128,7 @@ render(){
                 {description_content}
                 {final_content}
             </ReactSwipe>
+            <ButtonControll color="#4285f4" save={this.save}/>
 		 <MuiThemeProvider muiTheme={muiTheme}>
 			<BottomNavigation selectedIndex={start} className='bottomNavigation'>
 	          {bottomItems}

@@ -15,8 +15,13 @@ var Change  = function(id, type, value, area, task){
 		 case 'down':
 		 	return Down(finddata.location, task, area, finddata.element)
 		 case 'content':
+		 	// console.log(element)
+		 	// console.log(value)
 		 	element.content = value
 		 	break;
+		 case 'few-fields':
+		 	element.content = value.content
+		 	element.answer = value.answer
 		 case 'chooseBox':
 		 	element.content = value.content
 		 	element.answer = value.answer
@@ -26,8 +31,8 @@ var Change  = function(id, type, value, area, task){
 		 	element.answer = value.answer
 		 	break;
 		 case 'url':
-			var globalID = '/2'
-          	element.url = 'http://127.0.0.1:9999/'+'task_img'+globalID+'/'+value
+			var globalID = getId()
+          	element.url = 'http://127.0.0.1:9999'+'/task_img'+'/'+globalID+'/'+value
           	break;
 	}	
 	return(task)
@@ -36,38 +41,25 @@ var Change  = function(id, type, value, area, task){
 export default Change
 
 
-// switch(chnagedata[1]){
-//         case 'size':
-//           con[pos.first].content[pos.second].size = chnagedata[2]
-//           break;
-//         case 'content':
-//           con[pos.first].content[pos.second].content = chnagedata[2]
-//               break;
-//         case 'chooseBox':
-//           con[pos.first].content[pos.second].content = chnagedata[2][0]
-//           con[pos.first].content[pos.second].answer = chnagedata[2][1]
-//          case 'input':
-//             con[pos.first].content[pos.second].ext = chnagedata[2][0]
-//             con[pos.first].content[pos.second].answer = chnagedata[2][1]
-//               break;
-//         case 'url':
-//             var globalID = '/9'
-//            con[pos.first].content[pos.second].url = 'http://127.0.0.1:9999/'+'task_img'+globalID+'/'+chnagedata[2]
-//            break;
-//         case 'content_list':
-//             var li_position = search_li(chnagedata[2][0],  con[pos.first].content[pos.second])
-//              con[pos.first].content[pos.second].content[li_position].content = chnagedata[2][1]
-//               break;
-//         case 'new_list_item':
-//             var newID = Number(String(id)+getMax_ID(con[pos.first].content[pos.second].content))
-//             var item = {type: 'text',
-//                           content: 'Hello',
-//                           id:newID} 
-//             con[pos.first].content[pos.second].content.push(item)
-//               break;
-             
-//       }
 
+function getId(){
+		  	var pathname = window.location.pathname
+		  	pathname = Array.from(pathname)
+		  	pathname = pathname.reverse()
+			var id = []
+			var stop = 0
+			pathname.map(function (item, index) {
+				if(item == '/'){
+					stop++
+				}
+				if(stop== 0){
+					id.push(item)
+				}
+			})
+			id = id.reverse().join()
+			// var id= 1 
+			return id
+		  }
 
 function Up(location, task, area, element){
 	if(element == 0){

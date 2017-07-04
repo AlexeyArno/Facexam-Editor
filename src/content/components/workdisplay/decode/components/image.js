@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
-import ContentCreate from 'material-ui/svg-icons/content/create'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -85,12 +81,13 @@ export default class ImageWorkWindow extends Component{
 				        	 	<IconButton onClick={()=>this.handle()} style={closeStyle}>
 				        	 		<Close color='rgb(33, 150, 243)'/>
 				        	 	</IconButton>
-				        	 	<ImageSettings token={this.props.token} change={this.change} close={this.handle}/>
+				        	 	<ImageSettings token={this.props.token} change={this.change} close={this.handle} id={this.props.id}/>
 				        	</Dialog>
 		if(this.props.type == 'present'){
-		dialog = <div/>
-		elements =<div/>
-	}
+			dialog = <div/>
+			elements =<div/>
+		}
+		console.log(this.props.data.url)
 		return(<div className={name}>
 					{dialog}
 					{elements}

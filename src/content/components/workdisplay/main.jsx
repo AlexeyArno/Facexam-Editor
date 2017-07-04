@@ -21,6 +21,7 @@ constructor(props) {
 		  	return(this.props.task.content.map(function(item, index){
 			  	return(
 			  				<MainDecodeWorkDisplay key={index} item={item} delete={this.props.delete} token={this.props.token}
+			  					id={this.props.id}
 			  				index={index} theme={false} editSmth={this.editSmth} change={this.props.change} type='redactor'/>
 			  			)
 			  	}.bind(this))

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import configureStore from './store/create-store';
-import RoutersApp from './Routers.jsx'
+// import RoutersApp from './Routers.jsx'
+import Application from './application.js'
 import './libs/grid12.css';
 import './libs/circle.css';
 
@@ -16,7 +17,7 @@ var Full = () =>{
 	return(
  <div>
 	 <MuiThemeProvider>
-	 	<RoutersApp store={store}/>
+	 	<Application store={store}/>
 	 </MuiThemeProvider>
  </div>)}
 ReactDOM.render(

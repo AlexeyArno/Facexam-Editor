@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import IconButton from 'material-ui/IconButton';
-import ContentCreate from 'material-ui/svg-icons/content/create'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import Dialog from 'material-ui/Dialog';
-import Close from 'material-ui/svg-icons/navigation/close';
+
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
 export default class ListWorkWindow extends Component{

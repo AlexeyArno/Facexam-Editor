@@ -1,15 +1,15 @@
-var Formul = function(enterdata, data, maxId){
-	for(var i=1;i<=enterdata[1]; i++){
+var Formul = function(id){
 		var element = {
-				type: 'formul',
-				name: 'Формула '+i,
-				id: maxId+i,
-				content: '',
-		}
-		data.push(element)
-
+			name: 'Новая формула',
+			type: 'formul',
+			id: id,
+			style:{color: '#000'},
+			size: 'full',
+			// content = [{type: 'lim', x: "y", go: 5},{type:'summ'},{type: "num", content: 5}] = lim + 5
+			//                                           										  x->5 
+			content: []
 	}
-	return data
+	return element
 }
 
 export default Formul

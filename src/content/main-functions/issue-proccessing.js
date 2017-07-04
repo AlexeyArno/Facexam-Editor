@@ -13,6 +13,7 @@ function proveInputs(dislocation, task, area){
 						case 'check':
 						case 'radio':
 						case 'field':
+            case 'few-fields':
 							is = true
 					}
   				})
@@ -46,11 +47,12 @@ var IssueProcessing = function (type, task, area) {
   	var dislocationOfComponent = (area == task.content.length)?('describe'):('content')
   	switch(type){
   		case 'check':
-		case 'radio':
-		case 'field':
-			return proveInputs(dislocationOfComponent, task, area)
-		default:
-			return({pass: true})
+  		case 'radio':
+  		case 'field':
+      case 'few-fields':
+  			return proveInputs(dislocationOfComponent, task, area)
+  		default:
+  			return({pass: true})
   	}
 }
 

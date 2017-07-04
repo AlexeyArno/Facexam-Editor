@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import MenuItem from 'material-ui/MenuItem';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import MenuElements from './header/menuElements.jsx'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import Dialog from 'material-ui/Dialog';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -73,7 +67,6 @@ render(){
 					    targetOrigin={{horizontal: 'left', vertical: 'top'}}
 					    className='helllos'
 					  >
-					    <MenuItem primaryText="Сохранить" onClick={()=>this.props.save()}/>
 			    </IconMenu>
 	
 	return( 
@@ -93,6 +86,7 @@ render(){
           titleStyle={{color: 'rgb(33, 150, 243)'}}
           modal={false}
           open={this.state.create}
+          autoScrollBodyContent={true}
           onRequestClose={this.chnageCreate}
         	>
         	 	<IconButton onClick={()=>this.chnageCreate()} style={closeStyle}>
@@ -102,6 +96,7 @@ render(){
         	</Dialog>
 	  </div>
 
+					    // <MenuItem primaryText="Сохранить" onClick={()=>this.props.save()}/>
 		
 
 		   )

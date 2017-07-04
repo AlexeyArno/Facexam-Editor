@@ -8,8 +8,11 @@ import ActionAssignment from 'material-ui/svg-icons/action/assignment'
 import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box'
 import ToggleRadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked'
 import EditorFormatBold from 'material-ui/svg-icons/editor/format-bold'
+import EditorFunctions from 'material-ui/svg-icons/editor/functions'
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
+import EditorBorderAll from 'material-ui/svg-icons/editor/border-all'
+import CommunicationClearAll from 'material-ui/svg-icons/communication/clear-all'
 
 export default class Create extends Component{
 
@@ -47,6 +50,10 @@ render(){
 					<ActionList className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Список</div>
 				</div>
+				<div className="shellIconCreate" onClick={()=>this.create('table')}>
+					<EditorBorderAll className='iconCreate' color='rgba(0,0,0,0.4)'/>
+					<div style={{color: 'rgba(0,0,0,0.7)'}}>Таблица</div>
+				</div>
 				 <Divider style={{height: 2, background: 'rgba(0,0,0,1)'}}/>
 				 <Subheader>Ответы пользователя</Subheader>
 				<div className="shellIconCreate" onClick={()=>this.create('check')}>
@@ -60,6 +67,10 @@ render(){
 				<div className="shellIconCreate" onClick={()=>this.create('field')}>
 					<EditorFormatBold className='iconCreate' color='rgba(0,0,0,0.4)'/>
 					<div style={{color: 'rgba(0,0,0,0.7)'}}>Поле ввода</div>
+				</div>
+				<div className="shellIconCreate" onClick={()=>this.create('few-fields')}>
+					<CommunicationClearAll className='iconCreate' color='rgba(0,0,0,0.4)'/>
+					<div style={{color: 'rgba(0,0,0,0.7)'}}>Несколько полей ввода</div>
 				</div>
 				 <Divider style={{height: 2, background: 'rgba(0,0,0,1)'}}/>
 				 <Subheader>Глобальные</Subheader>

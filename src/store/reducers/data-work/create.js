@@ -7,6 +7,9 @@ import Check from '../default-elements/check.js'
 import Radio from '../default-elements/radio.js'
 import Textfield from '../default-elements/textfield.js'
 import Change from '../data-work/change-smth.js'
+import Formul from '../default-elements/formul.js'
+import Table from '../default-elements/table.js'
+import FewTextfields from '../default-elements/few-textfields.js'
 
 
 var Create = function(type, area, task) {
@@ -38,6 +41,15 @@ var Create = function(type, area, task) {
     case 'radio':
         var new_element = Radio(new_id)
         break;
+    case 'formul':
+      var new_element = Formul(new_id)
+      break;
+    case 'table':
+      var new_element = Table(new_id)
+      break;
+    case 'few-fields':
+      var new_element = FewTextfields(new_id)
+      break;
     default:
      return task
      break;

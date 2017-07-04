@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './components/header.jsx'
-import ToolbarHeader from './components/toolbar.jsx'
 import WorkDisplay from './components/workdisplay.jsx'
 import Snackbar from 'material-ui/Snackbar';
 import { connect } from 'react-redux';
@@ -53,6 +52,7 @@ constructor(props) {
 		  saveContent=()=>{
 		  	const {task, token} = this.props.user
 		  	Save(task, token)
+		  	window.location.reload()
 		  }
 
 
@@ -71,6 +71,7 @@ constructor(props) {
 		  }
 
 		  create=(type)=>{
+		  	console.log(type)
 		  	const {task} = this.props.user
 		  	const {createElement} = this.props.content
 		  	var area = this.state.nowPosition
@@ -84,7 +85,8 @@ render(){
 	return(<div>
 				<Header create={this.create} save={this.saveContent}/>
 				<WorkDisplay store={this.props.store} token={token} changePosit={this.changePosit}
-				delete={this.deleteElement} change={this.change} posit={this.state.nowPosition}/>
+				delete={this.deleteElement} change={this.change} posit={this.state.nowPosition}
+				save={this.saveContent} id={this.props.id}/>
 				<Snackbar
 		          open={this.state.open}
 		          message={this.state.message}

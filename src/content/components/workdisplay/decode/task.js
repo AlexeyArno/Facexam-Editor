@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import Paper from 'material-ui/Paper';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
-import ContentCreate from 'material-ui/svg-icons/content/create'
-import MainDecodeWorkDisplay from './mainDecode.js'
+
 
 
 export default class TaskWorkWindow extends Component{

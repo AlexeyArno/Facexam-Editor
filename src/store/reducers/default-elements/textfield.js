@@ -4,8 +4,8 @@ var Textfield = function(id){
 			type: 'field',
 			id: id,
 			size: 'full',
-			answer: 'hello',
-			ext: 'Н'
+			answer: '',
+			ext: ''
 	}
 	return element
 }

@@ -3,7 +3,6 @@ import Paper from 'material-ui/Paper';
 import MainDecodeWorkDisplay from './decode/mainDecode.js'
 import ReactSwipe from 'react-swipe';
 import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
 import AvPlayArrow from 'material-ui/svg-icons/av/play-arrow'
 
 
@@ -34,7 +33,7 @@ constructor(props) {
 		  			return(<MainDecodeWorkDisplay  item={item} key={index} type={'present'}/>)
 		  		})
 
-		  	return(<div key={key}>{final}</div>)
+		  	return(<div key={key} className='col-md-12'>{final}</div>)
 
 		  }
 
@@ -46,7 +45,7 @@ constructor(props) {
 		  	var final = comp.content.map(function(item, index){
 		  			return(<MainDecodeWorkDisplay  item={item} key={index} type={'present'}/>)
 		  		})
-		  	return(<div key={key}>{final}</div>)
+		  	return(<div key={key} className='col-md-12'>{final}</div>)
 
 		  }
 
@@ -65,6 +64,7 @@ render(){
 	}
 	var mainquest = []
 	var questions = []
+
 	var task = this.props.content
 	task.map(function(item, index){
 		  if(item.type == 'mainquest'){
@@ -75,7 +75,12 @@ render(){
 		  		questions.push(now)
 		  	}
 		}.bind(this))
-	var buttons = <div style={{position: 'absolute', right: 20, zIndex: 99999, opacity: 0.5}}>   
+	if(questions.length != 0){
+		var swipe = <ReactSwipe className="carousel" id='carousel234' ref="reactSwipe12"  key={questions.length}
+		  					swipeOptions={{continuous: false, startSlide: this.state.start, speed: 600}} >
+		                {questions}
+		            </ReactSwipe>
+		var buttons = <div style={{position: 'absolute', right: 20, zIndex: 99999, opacity: 0.5}}>   
 						 <IconButton  style={{transform: "scale(-1, 1)"}} onClick={()=>this.prev()}>
 						      <AvPlayArrow/>
 						    </IconButton>
@@ -83,16 +88,18 @@ render(){
 						      <AvPlayArrow />
 						    </IconButton>
 						 </div>
+
+	}else{
+		var swipe=<div/>
+		var buttons = <div/>
+	}
+	
 	return(<div  style={container}>
 			<Paper className='col-md-12 ' style={paper}>
 					{mainquest}
 					<hr style={{marginTop: 20}}/>
 					{buttons}
-					<ReactSwipe className="carousel" id='carousel234' ref="reactSwipe12"  key={questions.length}
-		  					swipeOptions={{continuous: false, startSlide: this.state.start, speed: 600}} >
-		                {questions}
-		            </ReactSwipe>
-
+					{swipe}
 			</Paper>
 		</div>
 

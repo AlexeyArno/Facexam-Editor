@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Paper from 'material-ui/Paper';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 import IconMenu from 'material-ui/IconMenu';
@@ -25,7 +23,7 @@ constructor(props) {
 
 		  deleteElemente=(name)=>{
 		  	var xmlhttp = new XMLHttpRequest()
-					var body =  JSON.stringify({token: this.props.token, code: '232323', id: 2, name: name})
+					var body =  JSON.stringify({token: this.props.token, code: '232323', id: this.props.getId(), name: name})
 					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/delete_img', false);
 					xmlhttp.send(body);  
 					if(xmlhttp.status == 200) {
@@ -42,7 +40,7 @@ constructor(props) {
 		    getImages=()=>{
 		  			var xmlhttp = new XMLHttpRequest()
 					var body =  JSON.stringify({token: this.props.token, code: '232323'})
-					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/task_images/2', false);
+					xmlhttp.open('POST', 'http://127.0.0.1:9999/api/author/task_images/'+this.props.getId(), false);
 					xmlhttp.send(body);  
 					if(xmlhttp.status == 200) {
 					var request = JSON.parse(xmlhttp.responseText)
@@ -53,7 +51,7 @@ constructor(props) {
 		  }
 
 		  renderImages=(images)=>{
-		  	var host = 'http://127.0.0.1:9999/task_img/2'
+		  	var host = 'http://127.0.0.1:9999/task_img/'+this.props.getId()
 		  	var final = images.map(function(item, index){
 		  		var url = host+'/'+item.slice(0,-4)
 		  			return(<div key={index} style={{display: 'inline-block'}}>
@@ -83,7 +81,7 @@ constructor(props) {
 render(){
 	var images = this.state.images
 	var picture_images = this.renderImages(images)
-	const host = 'http://127.0.0.1:9999/task_img/2/'
+	const host = 'http://127.0.0.1:9999/task_img/1/'
 	return( <div className="col-xs-12 col-md-12 paper">
 				<Paper >
 

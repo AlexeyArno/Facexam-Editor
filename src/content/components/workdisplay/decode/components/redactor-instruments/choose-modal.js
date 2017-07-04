@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import ToggleCheckBox from 'material-ui/svg-icons/toggle/check-box'
